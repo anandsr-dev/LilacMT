@@ -93,15 +93,16 @@ const search = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const commonMapping = {};
         const commonResults = [];
         results.forEach((result) => {
-            console.log('result', result);
             result.data.forEach((res) => {
-                console.log('res', res);
-                commonMapping[res.cca3] = commonMapping[res.cca3] ? commonMapping[res.cca3]++ : 1;
+                commonMapping[res.cca3] = commonMapping[res.cca3] ? commonMapping[res.cca3] + 1 : 1;
+                console.log('commonMapping', commonMapping);
                 if (commonMapping[res.cca3] === results.length) {
                     commonResults.push(res);
                 }
             });
         });
+        console.log(Object.keys(commonMapping).length);
+        console.log(commonResults.length);
         const formattedData = (0, helper_1.formatData)(commonResults);
         (0, apiResponse_1.sendSuccessResponse)(res, 200, "All countries fetched successfully", formattedData);
     }

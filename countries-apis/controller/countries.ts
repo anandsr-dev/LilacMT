@@ -45,7 +45,7 @@ export const search = async (req: Request, res: Response) => {
         const commonResults: Country[] = [];
         results.forEach((result) => {
             result.data.forEach((res: any) => {
-                commonMapping[res.cca3] = commonMapping[res.cca3] ? commonMapping[res.cca3]++ : 1;
+                commonMapping[res.cca3] = commonMapping[res.cca3] ? commonMapping[res.cca3]+1 : 1;
                 if(commonMapping[res.cca3] === results.length) {
                     commonResults.push(res)
                 }
